@@ -1,8 +1,8 @@
 
 
 
-import 'package:flutter/material.dart'show TextStyle,Colors,FontWeight;
-import 'package:video_player/src/core/values/colors.dart';
+import 'package:flutter/material.dart'show TextStyle,FontWeight;
+import 'package:video_player_flutter/src/core/values/colors.dart';
 
 const headingTextStyle=TextStyle(
   color: Appcolors.blackColor,
@@ -10,7 +10,7 @@ const headingTextStyle=TextStyle(
   fontWeight: FontWeight.bold
 );
 
-const durationTextStyle=TextStyle(
+const whiteColorTextStyle=TextStyle(
   color: Appcolors.whitecolor,
   fontSize: 14,
 );
@@ -21,8 +21,14 @@ const videotitleTextStyle=TextStyle(
   fontWeight: FontWeight.bold
 );
 
-const secondaryTextStyle=TextStyle(
+const textspanTextStyle=TextStyle(
   color: Appcolors.secondaryColor,
   fontSize: 18,
+  fontWeight: FontWeight.bold
+);
+
+const secondaryTextStyle=TextStyle(
+    color: Appcolors.secondaryColor,
+  fontSize: 14,
   fontWeight: FontWeight.bold
 );
