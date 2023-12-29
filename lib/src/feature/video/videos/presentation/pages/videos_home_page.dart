@@ -58,7 +58,7 @@ class VideoHomePage extends StatelessWidget {
                           color: Appcolors.blackColor,
                           borderRadius: BorderRadius.circular(8)
                         ),
-                        child: const Text("3.40",style: durationTextStyle,),
+                        child: const Text("3.40",style: whiteColorTextStyle,),
                                             ),
                       )
                       ],
@@ -86,8 +86,8 @@ class VideoHomePage extends StatelessWidget {
                               const Text("সে যদি দুই রাকাত নামাজ পড়ে_Abu Taha Muhammad Adnan__Message of Life_",overflow: TextOverflow.ellipsis,textAlign: TextAlign.left,maxLines: 2,style: videotitleTextStyle,),
                               RichText(text: const TextSpan(
                                 children: [
-                                  TextSpan(text: "53,245 views . ",style: secondaryTextStyle),
-                                  TextSpan(text: "Feb 21,2022",style: secondaryTextStyle)
+                                  TextSpan(text: "53,245 views . ",style: textspanTextStyle),
+                                  TextSpan(text: "Feb 21,2022",style: textspanTextStyle)
                                 ]
                               ))
                             ],
