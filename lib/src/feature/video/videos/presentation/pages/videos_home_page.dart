@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/src/core/common/space.dart';
-import 'package:video_player/src/core/values/colors.dart';
-import 'package:video_player/src/core/values/text_style.dart';
+import 'package:video_player_flutter/src/core/common/space.dart';
+import 'package:video_player_flutter/src/core/values/colors.dart';
+import 'package:video_player_flutter/src/core/values/text_style.dart';
 
 class VideoHomePage extends StatelessWidget {
   const VideoHomePage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/src/core/values/colors.dart';
-import 'package:video_player/src/feature/video/videos/presentation/pages/videos_home_page.dart';
+import 'package:video_player_flutter/src/core/values/colors.dart';
+import 'package:video_player_flutter/src/feature/video/videos/presentation/pages/videos_home_page.dart';
 
 void main() {
   runApp(const MyApp());
