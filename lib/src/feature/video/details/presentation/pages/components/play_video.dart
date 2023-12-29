@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 class PlayVideo extends StatefulWidget {
-  const PlayVideo({super.key});
-
+  const PlayVideo({super.key,required this.thumbnail,required this.videourl});
+  final String videourl;
+  final String thumbnail;
   @override
   State<PlayVideo> createState() => _PlayVideoState();
 }
@@ -19,7 +20,7 @@ class _PlayVideoState extends State<PlayVideo> {
   void initState(){
  videoPlayerController = VideoPlayerController.network(
   
-    'https://bycwknztmq.gpcdn.net/9501704c-dc46-4915-ac37-58bc25331203/playlist.m3u8',
+    widget.videourl,
     );
 
   scheduleMicrotask(() async{ 
@@ -50,7 +51,11 @@ class _PlayVideoState extends State<PlayVideo> {
   @override
   Widget build(BuildContext context) {
     return  ishumbailshow?Container(
-      color: Colors.red,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(widget.thumbnail))
+      ),
     ):Chewie(controller: chewieController);
   }
 }

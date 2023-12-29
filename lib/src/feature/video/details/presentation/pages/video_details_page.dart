@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:video_player_flutter/src/core/common/space.dart';
 import 'package:video_player_flutter/src/core/values/colors.dart';
@@ -7,10 +7,11 @@ import 'package:video_player_flutter/src/feature/video/details/presentation/page
 import 'package:video_player_flutter/src/feature/video/details/presentation/pages/components/comment_part.dart';
 import 'package:video_player_flutter/src/feature/video/details/presentation/pages/components/option_button.dart';
 import 'package:video_player_flutter/src/feature/video/details/presentation/pages/components/play_video.dart';
+import 'package:video_player_flutter/src/feature/video/root/data/model/video_model.dart';
 
 class VideoDetailsPage extends StatelessWidget {
-  const VideoDetailsPage({super.key});
-
+  const VideoDetailsPage({super.key,required this.videos});
+  final Results videos;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,17 +28,21 @@ class VideoDetailsPage extends StatelessWidget {
               color: Appcolors.blackColor,
             )),
         //video view
-        Container(
-          color: Colors.black.withOpacity(0.3),
+        videos.manifest.toString().isEmpty?Container(
+          color: Colors.black,
           height: 250,
-          child: const PlayVideo(),
+          child: const Text("Video Not Found",style:whiteColorTextStyle,),
+        ):  SizedBox(
+          
+          height: 250,
+          child: PlayVideo(thumbnail: videos.thumbnail.toString(),videourl: videos.manifest.toString(),),
         ),
         const VerticalSpace(height: 20),
         //video title
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+         Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Text(
-            "সে যদি দুই রাকাত নামাজ পড়ে_Abu Taha Muhammad Adnan__Message of Life_",
+            videos.title.toString(),
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,
             maxLines: 2,
@@ -49,9 +54,9 @@ class VideoDetailsPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: RichText(
-              text: const TextSpan(children: [
-            TextSpan(text: "53,245 views . ", style: textspanTextStyle),
-            TextSpan(text: "3 Days ago", style: textspanTextStyle)
+              text:  TextSpan(children: [
+            TextSpan(text: "${videos.viewers.toString()} views . ", style: textspanTextStyle),
+            TextSpan(text: videos.dateAndTime, style: textspanTextStyle)
           ])),
         ),
         const VerticalSpace(height: 20),
@@ -84,7 +89,7 @@ class VideoDetailsPage extends StatelessWidget {
         ),
         const VerticalSpace(height: 20),
         //chanel name ,subscribe
-        const ChanelNameSubscribeButton(),
+         ChannelNameSubscribeButton(channelname: videos.channelName.toString(),channelimage: videos.channelImage.toString(),subscriber: videos.channelSubscriber.toString(),),
         const VerticalSpace(height: 10),
         const Divider(
           height: 1,

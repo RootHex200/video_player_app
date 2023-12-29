@@ -86,7 +86,7 @@ class Results {
     thumbnail = json['thumbnail'];
     id = json['id'];
     title = json['title'];
-    dateAndTime = json['date_and_time'];
+    dateAndTime = dateDifference(json['date_and_time']);
     slug = json['slug'];
     createdAt = customDateFormte(json['created_at']);
     manifest = json['manifest'];
