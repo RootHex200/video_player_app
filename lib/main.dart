@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_player_flutter/src/core/network/cert_config.dart';
 import 'package:video_player_flutter/src/core/values/colors.dart';
 import 'package:video_player_flutter/src/feature/video/videos/presentation/bloc/video_bloc.dart';
 import 'package:video_player_flutter/src/feature/video/videos/presentation/bloc/video_event.dart';
 import 'package:video_player_flutter/src/feature/video/videos/presentation/pages/videos_home_page.dart';
 
 void main() {
+  certConfig();
   runApp(const MyApp());
 }
 
