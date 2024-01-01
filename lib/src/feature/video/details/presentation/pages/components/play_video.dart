@@ -1,9 +1,12 @@
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_player_flutter/src/feature/video/details/presentation/bloc/video_event.dart';
+import 'package:video_player_flutter/src/feature/video/details/presentation/bloc/video_play_bloc.dart';
+import 'package:video_player_flutter/src/feature/video/details/presentation/bloc/video_state.dart';
 class PlayVideo extends StatefulWidget {
   const PlayVideo({super.key,required this.thumbnail,required this.videourl});
   final String videourl;
@@ -13,31 +16,25 @@ class PlayVideo extends StatefulWidget {
 }
 
 class _PlayVideoState extends State<PlayVideo> {
-  late ChewieController chewieController;
+  // ignore: prefer_typing_uninitialized_variables
+  var chewieController;
   late VideoPlayerController videoPlayerController;
-  var ishumbailshow=true;
   @override
   void initState(){
+    context.read<VideoPlayBloc>().add(VideoPlayDispose());
+ // ignore: deprecated_member_use
  videoPlayerController = VideoPlayerController.network(
-  
     widget.videourl,
     );
-
   scheduleMicrotask(() async{ 
     await videoPlayerController.initialize();
-  });
-
-  scheduleMicrotask(() async{ 
-    await Future.delayed(const Duration(seconds: 1),(){
-       chewieController = ChewieController(
+           chewieController = ChewieController(
           videoPlayerController: videoPlayerController,
           autoPlay: true,
           looping: true
         );
-        setState(() {
-          ishumbailshow=false;
-        });
-    });
+        // ignore: use_build_context_synchronously
+        context.read<VideoPlayBloc>().add(VideoPlay());
   });
     super.initState();
   }
@@ -50,12 +47,16 @@ class _PlayVideoState extends State<PlayVideo> {
   }
   @override
   Widget build(BuildContext context) {
-    return  ishumbailshow?Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(widget.thumbnail))
-      ),
-    ):Chewie(controller: chewieController);
+    return  BlocBuilder<VideoPlayBloc, VideoPlayState>(
+      builder: (context, state) {
+        return state is VideoPlayInitial || chewieController==null?Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(widget.thumbnail))
+              ),
+            ):Chewie(controller: chewieController);
+      },
+    );
   }
 }
